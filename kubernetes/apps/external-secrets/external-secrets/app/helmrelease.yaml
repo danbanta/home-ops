@@ -1,0 +1,30 @@
+---
+# flux create helmrelease external-secrets --chart external-secrets --source HelmRepository/external-secrets --chart-version 0.20.4 --namespace external-secrets
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: external-secrets
+  namespace: external-secrets
+spec:
+  chart:
+    spec:
+      chart: external-secrets
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: external-secrets
+      version: 0.20.4
+  interval: 1h
+  values:
+  leaderElect: true
+  serviceMonitor:
+    enabled: true
+  grafanaDashboard:
+    enabled: true
+  certController:
+    serviceMonitor:
+      enabled: true
+  webhook:
+    replicaCount: 2
+    serviceMonitor:
+      enabled: true

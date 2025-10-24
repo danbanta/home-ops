@@ -1,0 +1,10 @@
+---
+# flux create source helm external-secrets --url https://charts.external-secrets.io --namespace external-secrets --export
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: external-secrets
+  namespace: external-secrets
+spec:
+  interval: 1h
+  url: https://charts.external-secrets.io

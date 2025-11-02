@@ -60,7 +60,7 @@ spec:
       storage:
         useAllNodes: true
         useAllDevices: false
-        devicePathFilter: /dev/nvme0n1
+        devicePathFilter: /dev/disk/by-id/nvme-NX-1TB_2280*
         config:
           osdsPerDevice: "1"
     cephBlockPools:

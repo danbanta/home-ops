@@ -6,4 +6,3 @@ resources:
   - ./alertmanagerconfig.yaml
   - ./helmrelease.yaml
   - ./ocirepository.yaml
-  - ./scrapeconfig.yaml

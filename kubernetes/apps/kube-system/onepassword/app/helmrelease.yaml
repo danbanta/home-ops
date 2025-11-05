@@ -101,17 +101,6 @@ spec:
                   failureThreshold: 3
             resources: *resources
             securityContext: *securityContext
-          operator:
-            image:
-              repository: ghcr.io/1password/onepassword-operator
-              tag: 1.8.1
-            env:
-              XDG_DATA_HOME: &configDir /config
-              OP_CONNECT_TOKEN:
-                valueFrom:
-                  secretKeyRef:
-                    name: "{{ .Release.Name }}-token"
-                    key: token
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true

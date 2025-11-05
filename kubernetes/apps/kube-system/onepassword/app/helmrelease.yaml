@@ -28,7 +28,7 @@ spec:
               OP_SESSION:
                 valueFrom:
                   secretKeyRef:
-                    name: "op-credentials"
+                    name: "{{ .Release.Name }}-credentials"
                     key: 1password-credentials.json
             probes:
               liveness:
@@ -74,7 +74,7 @@ spec:
               OP_SESSION:
                 valueFrom:
                   secretKeyRef:
-                    name: "op-credentials"
+                    name: "{{ .Release.Name }}-credentials"
                     key: 1password-credentials.json
             probes:
               liveness:
@@ -101,6 +101,19 @@ spec:
                   failureThreshold: 3
             resources: *resources
             securityContext: *securityContext
+          operator:
+            image:
+              repository: ghcr.io/1password/onepassword-operator
+              tag: 1.8.1
+            create: true
+            autoRestart: true
+            env:
+              XDG_DATA_HOME: &configDir /config
+              OP_CONNECT_TOKEN:
+                valueFrom:
+                  secretKeyRef:
+                    name: "{{ .Release.Name }}-token"
+                    key: token
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
@@ -116,6 +129,3 @@ spec:
         type: emptyDir
         globalMounts:
           - path: *configDir
-    operator:
-      create: true
-      autoRestart: true

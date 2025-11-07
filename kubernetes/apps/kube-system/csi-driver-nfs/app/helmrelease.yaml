@@ -12,8 +12,7 @@ spec:
   values:
     storageClass:
       create: true
-      movies:
-        name: nfs-movies
+      - name: nfs-movies
         parameters:
           server: ricey.hm.banta.io
           share: /mnt/ricey/movies
@@ -24,8 +23,7 @@ spec:
           - noatime
         reclaimPolicy: Delete
         volumeBindingMode: Immediate
-      music:
-        name: nfs-music
+      - name: nfs-music
         parameters:
           server: ricey.hm.banta.io
           share: /mnt/ricey/music
@@ -36,8 +34,7 @@ spec:
           - noatime
         reclaimPolicy: Delete
         volumeBindingMode: Immediate
-      tv:
-        name: nfs-tv
+      - name: nfs-tv
         parameters:
           server: ricey.hm.banta.io
           share: /mnt/ricey/tv

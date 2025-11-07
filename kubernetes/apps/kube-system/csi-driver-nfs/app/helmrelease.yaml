@@ -12,36 +12,37 @@ spec:
   values:
     storageClass:
       create: true
-      - name: nfs-movies
-        parameters:
-          server: ricey.hm.banta.io
-          share: /mnt/ricey/movies
-        mountOptions:
-          - nfsvers=4.2
-          - nconnect=16
-          - hard
-          - noatime
-        reclaimPolicy: Delete
-        volumeBindingMode: Immediate
-      - name: nfs-music
-        parameters:
-          server: ricey.hm.banta.io
-          share: /mnt/ricey/music
-        mountOptions:
-          - nfsvers=4.2
-          - nconnect=16
-          - hard
-          - noatime
-        reclaimPolicy: Delete
-        volumeBindingMode: Immediate
-      - name: nfs-tv
-        parameters:
-          server: ricey.hm.banta.io
-          share: /mnt/ricey/tv
-        mountOptions:
-          - nfsvers=4.2
-          - nconnect=16
-          - hard
-          - noatime
-        reclaimPolicy: Delete
-        volumeBindingMode: Immediate
+      classes:
+        - name: nfs-movies
+          parameters:
+            server: ricey.hm.banta.io
+            share: /mnt/ricey/movies
+          mountOptions:
+            - nfsvers=4.2
+            - nconnect=16
+            - hard
+            - noatime
+          reclaimPolicy: Delete
+          volumeBindingMode: Immediate
+        - name: nfs-music
+          parameters:
+            server: ricey.hm.banta.io
+            share: /mnt/ricey/music
+          mountOptions:
+            - nfsvers=4.2
+            - nconnect=16
+            - hard
+            - noatime
+          reclaimPolicy: Delete
+          volumeBindingMode: Immediate
+        - name: nfs-tv
+          parameters:
+            server: ricey.hm.banta.io
+            share: /mnt/ricey/tv
+          mountOptions:
+            - nfsvers=4.2
+            - nconnect=16
+            - hard
+            - noatime
+          reclaimPolicy: Delete
+          volumeBindingMode: Immediate

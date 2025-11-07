@@ -12,36 +12,14 @@ spec:
   values:
     storageClass:
       create: true
-      nfs-movies:
-        parameters:
-          server: ricey.internal
-          share: /mnt/ricey/movies
-        mountOptions:
-          - nfsvers=4.2
-          - nconnect=16
-          - hard
-          - noatime
-        reclaimPolicy: Delete
-        volumeBindingMode: Immediate
-      nfs-music:
-        parameters:
-          server: ricey.internal
-          share: /mnt/ricey/music
-        mountOptions:
-          - nfsvers=4.2
-          - nconnect=16
-          - hard
-          - noatime
-        reclaimPolicy: Delete
-        volumeBindingMode: Immediate
-      nfs-tv:
-        parameters:
-          server: ricey.internal
-          share: /mnt/ricey/tv
-        mountOptions:
-          - nfsvers=4.2
-          - nconnect=16
-          - hard
-          - noatime
-        reclaimPolicy: Delete
-        volumeBindingMode: Immediate
+      name: nfs-media
+      parameters:
+        server: ricey.internal
+        share: /mnt/ricey/movies
+      mountOptions:
+        - nfsvers=4.2
+        - nconnect=16
+        - hard
+        - noatime
+      reclaimPolicy: Delete
+      volumeBindingMode: Immediate

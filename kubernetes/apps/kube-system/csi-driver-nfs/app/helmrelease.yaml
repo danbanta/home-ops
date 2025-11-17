@@ -12,10 +12,10 @@ spec:
   values:
     storageClass:
       create: true
-      name: nfs-movies
+      name: nfs-usenet
       parameters:
         server: ricey.internal
-        share: /mnt/ricey/movies
+        share: /mnt/ricey/usenet
       mountOptions:
         - nfsvers=4.2
         - nconnect=16

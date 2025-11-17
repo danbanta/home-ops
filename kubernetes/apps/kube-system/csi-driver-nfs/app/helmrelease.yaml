@@ -12,10 +12,10 @@ spec:
   values:
     storageClass:
       create: true
-      name: nfs-media
+      name: nfs-movies
       parameters:
         server: ricey.internal
-        share: /srv/media/movies
+        share: /mnt/ricey/movies
       mountOptions:
         - nfsvers=4.2
         - nconnect=16

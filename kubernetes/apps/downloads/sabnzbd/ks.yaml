@@ -10,12 +10,12 @@ spec:
       app.kubernetes.io/name: sabnzbd
   components:
     - ../../../../components/volsync
-    - ../../../../components/keda/nas-nfs-scaler
+    - ../../../../components/nas-nfs-scaler
   dependsOn:
     - name: rook-ceph-cluster
       namespace: rook-ceph
     - name: openebs
-      namespace: openebs
+      namespace: openebs-system
   interval: 1h
   path: "./kubernetes/apps/downloads/sabnzbd/app"
   postBuild:

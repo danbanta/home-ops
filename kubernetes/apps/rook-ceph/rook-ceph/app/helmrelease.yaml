@@ -19,7 +19,6 @@ spec:
       repository: ghcr.io/rook/ceph
     monitoring:
       enabled: true
-    operatorNamespace: storage
     resources:
       requests:
         memory: 128Mi # unchangable

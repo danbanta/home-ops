@@ -13,7 +13,7 @@ spec:
     - ../../../../components/nfs-scaler
   dependsOn:
     - name: rook-ceph-cluster
-      namespace: storage
+      namespace: rook-ceph
     - name: openebs
       namespace: openebs-system
   interval: 1h

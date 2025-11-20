@@ -55,12 +55,21 @@ spec:
             enabled: true
       network:
         provider: host
+        addressRanges:
+          public:
+            - 169.254.255.0/24
+          cluster:
+            - 169.254.255.0/24
         connections:
           requireMsgr2: true
+      resources:
+        osd:
+          limits:
+            memory: 8Gi
       storage:
         useAllNodes: true
         useAllDevices: false
-        devicePathFilter: /dev/disk/by-id/nvme-NX-1TB_2280*
+        devicePathFilter: /dev/disk/by-id/nvme-NX-1TB_2280_*
         config:
           osdsPerDevice: "1"
     cephBlockPools:
@@ -68,7 +77,7 @@ spec:
         spec:
           failureDomain: host
           replicated:
-            size: 2
+            size: 3
         storageClass:
           enabled: true
           name: ceph-block
@@ -100,11 +109,11 @@ spec:
         spec:
           metadataPool:
             replicated:
-              size: 2
+              size: 3
           dataPools:
             - failureDomain: host
               replicated:
-                size: 2
+                size: 3
               name: data0
           metadataServer:
             activeCount: 1

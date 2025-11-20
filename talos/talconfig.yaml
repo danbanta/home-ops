@@ -20,7 +20,7 @@ cniConfig:
 
 nodes:
   - hostname: "rk1n1"
-    ipAddress: "172.16.116.127"
+    ipAddress: "172.16.116.41"
     installDisk: "/dev/mmcblk0"
     machineSpec:
       secureboot: false
@@ -31,7 +31,7 @@ nodes:
           hardwareAddr: "52:e8:b6:0e:11:8d"
         dhcp: false
         addresses:
-          - "172.16.116.127/24"
+          - "172.16.116.41/24"
         routes:
           - network: "0.0.0.0/0"
             gateway: "172.16.116.1"
@@ -39,7 +39,7 @@ nodes:
         vip:
           ip: "172.16.116.60"
   - hostname: "rk1n2"
-    ipAddress: "172.16.116.129"
+    ipAddress: "172.16.116.42"
     installDisk: "/dev/mmcblk0"
     machineSpec:
       secureboot: false
@@ -50,7 +50,7 @@ nodes:
           hardwareAddr: "66:aa:02:1b:53:d6"
         dhcp: false
         addresses:
-          - "172.16.116.129/24"
+          - "172.16.116.42/24"
         routes:
           - network: "0.0.0.0/0"
             gateway: "172.16.116.1"
@@ -58,7 +58,7 @@ nodes:
         vip:
           ip: "172.16.116.60"
   - hostname: "rk1n3"
-    ipAddress: "172.16.116.134"
+    ipAddress: "172.16.116.43"
     installDisk: "/dev/mmcblk0"
     machineSpec:
       secureboot: false
@@ -69,7 +69,7 @@ nodes:
           hardwareAddr: "42:d1:ce:45:b2:41"
         dhcp: false
         addresses:
-          - "172.16.116.134/24"
+          - "172.16.116.43/24"
         routes:
           - network: "0.0.0.0/0"
             gateway: "172.16.116.1"
@@ -77,7 +77,7 @@ nodes:
         vip:
           ip: "172.16.116.60"
   - hostname: "rk1n4"
-    ipAddress: "172.16.116.137"
+    ipAddress: "172.16.116.44"
     installDisk: "/dev/mmcblk0"
     machineSpec:
       secureboot: false
@@ -88,7 +88,7 @@ nodes:
           hardwareAddr: "66:bd:af:7d:8e:fe"
         dhcp: false
         addresses:
-          - "172.16.116.137/24"
+          - "172.16.116.44/24"
         routes:
           - network: "0.0.0.0/0"
             gateway: "172.16.116.1"

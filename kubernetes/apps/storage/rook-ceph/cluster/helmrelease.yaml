@@ -13,6 +13,7 @@ spec:
     monitoring:
       enabled: true
       createPrometheusRules: true
+    operatorNamespace: storage
     toolbox:
       enabled: true
     route:

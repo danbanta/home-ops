@@ -95,7 +95,7 @@ spec:
       repository:
         type: nfs
         server: ricey.internal
-        path: /mnt/eros/VolsyncKopia
+        path: /mnt/ricey/backups
         globalMounts:
           - path: /repository
       tmpfs:

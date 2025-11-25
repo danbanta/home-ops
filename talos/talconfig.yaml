@@ -1,0 +1,109 @@
+---
+clusterName: kubernetes
+
+talosVersion: "${talosVersion}"
+kubernetesVersion: "${kubernetesVersion}"
+
+endpoint: https://172.16.116.60:6443
+additionalApiServerCertSans: &sans
+  - "127.0.0.1"
+  - "172.16.116.60"
+  - "cluster.banta.io"
+additionalMachineCertSans: *sans
+
+clusterPodNets: ["10.116.0.0/16"]
+clusterSvcNets: ["10.117.0.0/16"]
+
+# Disable built-in CNI to use Cilium
+cniConfig:
+  name: none
+
+nodes:
+  - hostname: "rk1n1"
+    ipAddress: "172.16.116.41"
+    installDisk: "/dev/mmcblk0"
+    machineSpec:
+      secureboot: false
+    talosImageURL: factory.talos.dev/installer/d25bc36ca70d8076e949b9225f311dcfb500450efd2b9a0e139c4d7df6b0bdb7
+    controlPlane: true
+    networkInterfaces:
+      - deviceSelector:
+          hardwareAddr: "52:e8:b6:0e:11:8d"
+        dhcp: false
+        addresses:
+          - "172.16.116.41/24"
+        routes:
+          - network: "0.0.0.0/0"
+            gateway: "172.16.116.1"
+        mtu: 1500
+        vip:
+          ip: "172.16.116.60"
+  - hostname: "rk1n2"
+    ipAddress: "172.16.116.42"
+    installDisk: "/dev/mmcblk0"
+    machineSpec:
+      secureboot: false
+    talosImageURL: factory.talos.dev/installer/d25bc36ca70d8076e949b9225f311dcfb500450efd2b9a0e139c4d7df6b0bdb7
+    controlPlane: true
+    networkInterfaces:
+      - deviceSelector:
+          hardwareAddr: "66:aa:02:1b:53:d6"
+        dhcp: false
+        addresses:
+          - "172.16.116.42/24"
+        routes:
+          - network: "0.0.0.0/0"
+            gateway: "172.16.116.1"
+        mtu: 1500
+        vip:
+          ip: "172.16.116.60"
+  - hostname: "rk1n3"
+    ipAddress: "172.16.116.43"
+    installDisk: "/dev/mmcblk0"
+    machineSpec:
+      secureboot: false
+    talosImageURL: factory.talos.dev/installer/d25bc36ca70d8076e949b9225f311dcfb500450efd2b9a0e139c4d7df6b0bdb7
+    controlPlane: true
+    networkInterfaces:
+      - deviceSelector:
+          hardwareAddr: "42:d1:ce:45:b2:41"
+        dhcp: false
+        addresses:
+          - "172.16.116.43/24"
+        routes:
+          - network: "0.0.0.0/0"
+            gateway: "172.16.116.1"
+        mtu: 1500
+        vip:
+          ip: "172.16.116.60"
+  - hostname: "rk1n4"
+    ipAddress: "172.16.116.44"
+    installDisk: "/dev/mmcblk0"
+    machineSpec:
+      secureboot: false
+    talosImageURL: factory.talos.dev/installer/d25bc36ca70d8076e949b9225f311dcfb500450efd2b9a0e139c4d7df6b0bdb7
+    controlPlane: false
+    networkInterfaces:
+      - deviceSelector:
+          hardwareAddr: "66:bd:af:7d:8e:fe"
+        dhcp: false
+        addresses:
+          - "172.16.116.44/24"
+        routes:
+          - network: "0.0.0.0/0"
+            gateway: "172.16.116.1"
+        mtu: 1500
+
+# Global patches
+patches:
+  - "@./patches/global/machine-files.yaml"
+  - "@./patches/global/machine-kubelet.yaml"
+  - "@./patches/global/machine-network.yaml"
+  - "@./patches/global/machine-sysctls.yaml"
+  - "@./patches/global/machine-time.yaml"
+
+# Controller patches
+controlPlane:
+  patches:
+    - "@./patches/controller/cluster.yaml"
+

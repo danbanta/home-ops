@@ -59,7 +59,7 @@ spec:
           public:
             - 172.16.116.0/24
           cluster:
-            - 169.254.255.0/24
+            - 172.16.116.0/24
         connections:
           requireMsgr2: true
       resources:

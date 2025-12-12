@@ -8,11 +8,12 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: sabnzbd
+  components:
+    - ../../../../components/nfs-scaler
+    - ../../../../components/volsync
   dependsOn:
     - name: rook-ceph-cluster
       namespace: rook-ceph
-    - name: openebs
-      namespace: openebs-system
   interval: 1h
   path: "./kubernetes/apps/downloads/sabnzbd/app"
   postBuild:

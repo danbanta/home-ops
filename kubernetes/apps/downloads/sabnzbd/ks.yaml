@@ -8,9 +8,9 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: sabnzbd
-  components:
-    - ../../../../components/volsync
-    - ../../../../components/nfs-scaler
+#  components:
+#    - ../../../../components/volsync
+#    - ../../../../components/nfs-scaler
   dependsOn:
     - name: rook-ceph-cluster
       namespace: rook-ceph

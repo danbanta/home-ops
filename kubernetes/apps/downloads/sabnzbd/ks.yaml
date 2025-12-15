@@ -10,7 +10,6 @@ spec:
       app.kubernetes.io/name: sabnzbd
   components:
     - ../../../../components/nfs-scaler
-    - ../../../../components/volsync
   dependsOn:
     - name: rook-ceph-cluster
       namespace: rook-ceph

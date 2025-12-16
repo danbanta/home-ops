@@ -58,9 +58,6 @@ spec:
   # Note: externalClusters is needed when recovering from an existing cnpg cluster
   externalClusters:
     - name: *previousCluster
-      barmanObjectStore:
-        <<: *barmanObjectStore
-        serverName: *previousCluster
     # - name: ${SECRET_DOMAIN}-v16
     #   connectionParameters:
     #     host: ${SECRET_DOMAIN}-v16-ro.databases

@@ -4,19 +4,18 @@ kind: Service
 metadata:
   name: postgres-lb
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: postgres.${CLUSTER_DOMAIN}
+    external-dns.alpha.kubernetes.io/hostname: postgres.${SECRET_DOMAIN}
     lbipam.cilium.io/ips: "${POSTGRES_IPV4}"
 spec:
   type: LoadBalancer
   externalTrafficPolicy: Local
-  ipFamilies: IPv4
   ports:
     - name: postgres
       port: 5432
       protocol: TCP
       targetPort: 5432
   selector:
-    cnpg.io/cluster: banta
+    cnpg.io/cluster: home
     role: primary
 ---
 apiVersion: v1
@@ -31,7 +30,7 @@ spec:
       protocol: TCP
       targetPort: 5432
   selector:
-    cnpg.io/cluster: banta
+    cnpg.io/cluster: home
     cnpg.io/podRole: instance
 ---
 apiVersion: v1
@@ -46,7 +45,7 @@ spec:
       protocol: TCP
       targetPort: 5432
   selector:
-    cnpg.io/cluster: banta
+    cnpg.io/cluster: home
     role: replica
 ---
 apiVersion: v1
@@ -61,6 +60,6 @@ spec:
       protocol: TCP
       targetPort: 5432
   selector:
-    cnpg.io/cluster: banta
+    cnpg.io/cluster: home
     role: primary
   sessionAffinity: None

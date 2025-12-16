@@ -23,7 +23,7 @@ spec:
               tag: 18.1@sha256:ed06f4b351524185ac8e03948ab7e05b6972ac4e73f430d9fc75f655e0edef1b
             envFrom: &envFrom
               - secretRef:
-                  name: *app-secret
+                  name: lldap-secret
         containers:
           app:
             image:
@@ -34,7 +34,7 @@ spec:
               LLDAP_HTTP_PORT: &port 80
               LLDAP_HTTP_URL: https://lldap.${SECRET_DOMAIN}
               LLDAP_LDAP_PORT: &ldapPort 389
-              LLDAP_LDAP_BASE_DN: dc=home,dc=arpa
+              LLDAP_LDAP_BASE_DN: dc=banta,dc=io
             envFrom: *envFrom
             probes:
               liveness:

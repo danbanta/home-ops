@@ -63,7 +63,7 @@ spec:
         serverName: *previousCluster
     # - name: ${SECRET_DOMAIN}-v16
     #   connectionParameters:
-    #     host: ${SECRET_DOMAIN}-v16-ro.dbms
+    #     host: ${SECRET_DOMAIN}-v16-ro.databases
     #     user: postgres
     #     dbname: postgres
     #     sslmode: require

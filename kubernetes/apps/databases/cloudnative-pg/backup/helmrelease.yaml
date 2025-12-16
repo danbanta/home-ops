@@ -51,7 +51,7 @@ spec:
               - "/bin/sh"
             args:
               - "-c"
-              - "pg_dumpall -U $PGUSER | gzip > /backup/${SECRET_DOMAIN}-cluster.dump.gz"
+              - "pg_dumpall -U $PGUSER | gzip > /backup/banta-cluster.dump.gz"
             resources:
               requests:
                 cpu: 50m

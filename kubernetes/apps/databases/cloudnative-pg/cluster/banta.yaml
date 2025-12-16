@@ -3,7 +3,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: ${SECRET_DOMAIN}
+  name: banta
   annotations:
     kyverno.io/ignore: "true"
 spec:
@@ -43,7 +43,7 @@ spec:
   # cluster when recovering from an existing cnpg cluster
   bootstrap:
     recovery:
-      source: &previousCluster ${SECRET_DOMAIN}-v3
+      source: &previousCluster banta-v3
     # upgrade or recover from another running instance
     # initdb:
     #   import:
@@ -53,14 +53,14 @@ spec:
     #     roles:
     #       - "*"
     #     source:
-    #       externalCluster: ${SECRET_DOMAIN}-v16
+    #       externalCluster: banta-v16
 
   # Note: externalClusters is needed when recovering from an existing cnpg cluster
   externalClusters:
     - name: *previousCluster
-    # - name: ${SECRET_DOMAIN}-v16
+    # - name: banta-v16
     #   connectionParameters:
-    #     host: ${SECRET_DOMAIN}-v16-ro.databases
+    #     host: banta-v16-ro.databases
     #     user: postgres
     #     dbname: postgres
     #     sslmode: require

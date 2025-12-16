@@ -16,7 +16,7 @@ spec:
       protocol: TCP
       targetPort: 5432
   selector:
-    cnpg.io/cluster: ${SECRET_DOMAIN}
+    cnpg.io/cluster: banta
     role: primary
 ---
 apiVersion: v1
@@ -31,7 +31,7 @@ spec:
       protocol: TCP
       targetPort: 5432
   selector:
-    cnpg.io/cluster: ${SECRET_DOMAIN}
+    cnpg.io/cluster: banta
     cnpg.io/podRole: instance
 ---
 apiVersion: v1
@@ -46,7 +46,7 @@ spec:
       protocol: TCP
       targetPort: 5432
   selector:
-    cnpg.io/cluster: ${SECRET_DOMAIN}
+    cnpg.io/cluster: banta
     role: replica
 ---
 apiVersion: v1
@@ -61,6 +61,6 @@ spec:
       protocol: TCP
       targetPort: 5432
   selector:
-    cnpg.io/cluster: ${SECRET_DOMAIN}
+    cnpg.io/cluster: banta
     role: primary
   sessionAffinity: None

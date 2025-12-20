@@ -61,5 +61,5 @@ spec:
     persistence:
       backup:
         type: nfs
-        server: ${SECRET_NFS_SERVER}
+        server: ricey.internal
         path: /src/backup

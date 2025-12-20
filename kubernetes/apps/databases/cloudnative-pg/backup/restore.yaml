@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: &name pg-kochhaus-restore
+  name: &name pg-home-restore
 spec:
   ttlSecondsAfterFinished: 86400
   template:
@@ -12,7 +12,7 @@ spec:
       volumes:
         - name: backup
           nfs:
-            server: ${SECRET_NFS_SERVER}
+            server: ricey.internal
             path: /srv/backup
 
       securityContext:

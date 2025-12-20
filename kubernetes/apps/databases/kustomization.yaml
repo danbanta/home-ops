@@ -10,3 +10,5 @@ components:
 resources:
   - ./namespace.yaml
   - ./cloudnative-pg/ks.yaml
+  - ./pgadmin/ks.yaml
+  - ./postgres-backup/ks.yaml

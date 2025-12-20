@@ -1,0 +1,56 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: postgres-backup
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: app-template
+  interval: 1h
+  values:
+    controllers:
+      postgres-backup:
+        type: cronjob
+        cronjob:
+          concurrencyPolicy: Forbid
+          schedule: "0 17 * * *"
+        pod:
+          restartPolicy: OnFailure
+          securityContext:
+            runAsUser: 1022
+            runAsGroup: 1022
+            fsGroup: 1022
+        containers:
+          app:
+            image:
+              repository: mirror.gcr.io/prodrigestivill/postgres-backup-local
+              # renovate: datasource=docker depName=docker.io/prodrigestivill/postgres-backup-local
+              tag: 18@sha256:f70742ebe42b2277689b028d1fd15aa80f77cffa01da163cc9f85a6ff1866e7f
+            command:
+              - /bin/bash
+              - -x
+              - /backup.sh
+            env:
+              - {name: TZ, value: "${TZ:=Etc/UTC}"}
+              - {name: POSTGRES_DB, value: "lldap"}
+              - {name: POSTGRES_HOST, value: "postgres-ro.dbms.svc.cluster.local"}
+              - {name: POSTGRES_PORT, value: 5432}
+              - name: POSTGRES_USER
+                valueFrom:
+                  secretKeyRef:
+                    name: cloudnative-pg-secret
+                    key: username
+              - name: POSTGRES_PASSWORD
+                valueFrom:
+                  secretKeyRef:
+                    name: cloudnative-pg-secret
+                    key: password
+    persistence:
+      nas:
+        type: nfs
+        server: ${SECRET_BACKUP_SERVER:=fnord}
+        path: /backup/data/k8s/postgres
+        globalMounts:
+          - path: /backups

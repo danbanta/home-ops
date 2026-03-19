@@ -77,23 +77,6 @@ nodes:
         mtu: 1500
         vip:
           ip: "172.16.116.60"
-  - hostname: "rk1n4"
-    ipAddress: "172.16.116.44"
-    installDisk: "/dev/mmcblk0"
-    machineSpec:
-      secureboot: false
-    talosImageURL: factory.talos.dev/installer/d25bc36ca70d8076e949b9225f311dcfb500450efd2b9a0e139c4d7df6b0bdb7
-    controlPlane: false
-    networkInterfaces:
-      - deviceSelector:
-          hardwareAddr: "66:bd:af:7d:8e:fe"
-        dhcp: false
-        addresses:
-          - "172.16.116.44/24"
-        routes:
-          - gateway: "172.16.116.1"
-            network: 0.0.0.0/0
-        mtu: 1500
 
 # Global patches
 patches:
@@ -107,4 +90,3 @@ patches:
 controlPlane:
   patches:
     - "@./patches/controller/cluster.yaml"
-
